@@ -23,8 +23,8 @@ class Assembly:
         # fetch all the instructions
         with open(file, 'r') as original:
             for _ in original:
-                filedata = original.read()
-                instructions = re.findall(pattern, filedata)
+                file_data = original.read()
+                instructions = re.findall(pattern, file_data)
         # Create a new file to store the instructions
         with open('copy.txt', 'w') as copy:
             for instruction in instructions:
