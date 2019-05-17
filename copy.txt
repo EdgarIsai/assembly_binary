@@ -1,0 +1,23 @@
+addi 0 25 3
+addi 1 25 8200
+sub 2 2 2
+sub 3 3 3
+addi 2 25 0
+add 3 0 25
+addi 2 25 1
+div 3 2
+mfhi 4
+beq 0 1 96
+beq 2 3 92
+beq 4 25 64
+j 24
+addi 0 25 1
+j 8
+add 5 2 25
+beq 5 3 72
+j 24
+sub 6 6 6
+add 6 2 25
+j 56
+sub 5 5 5
+j 56
