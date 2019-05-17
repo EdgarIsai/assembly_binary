@@ -17,7 +17,7 @@ class Assembly:
     def clean(self, file):
         """
         Creates a text file with all the instructions and then erase the
-        unnesesary characters (',', '$' and '#')
+        unnecessary characters (',', '$' and '#')
         """
         pattern = r'[\w]+\s[$#][\d]+,?\s?[#$]?[\d]{0,},?\s?[$#]?[\d]{0,}'
         # fetch all the instructions
