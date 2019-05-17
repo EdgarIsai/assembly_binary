@@ -14,6 +14,10 @@ class Assembly:
         }
 
     def clean(self, file):
+        """
+        Creates a text file with all the instructions and then erase the
+        unnesesary characters (',', '$' and '#')
+        """
         self.file = file
         pattern = r'[\w]+\s[$#][\d]+,?\s?[#$]?[\d]{0,},?\s?[$#]?[\d]{0,}'
         # fetch all the instructions
@@ -37,8 +41,10 @@ class Assembly:
             file.write(data)
 
     def binary(self, file):
-
+        """
+        Translates assembly to binary and appends it to a new file"""
         def append_binary(file):
+            """Append a 32 binary string to a text file in a 4 line style"""
             with open(file, 'a') as append_file:
                 start = 0
                 end = 8
