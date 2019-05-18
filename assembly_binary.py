@@ -7,11 +7,12 @@ class Assembly:
         self.opt = {
             'add': '000000',
             'addi': '001000',
-            'div': '000000',
+            'rem': '000000',
             'mfhi': '000000',
             'beq': '000100',
             'sub': '000000',
             'j': '000010',
+            'mul': '011100',
         }
 
     def clean(self, file):
@@ -43,6 +44,11 @@ class Assembly:
     def binary(self, file):
         """
         Translates assembly to binary and appends it to a new file"""
+        def new_file(file):
+            with open(file, 'w') as file:
+                file.write('')
+
+
         def append_binary(file):
             """Append a 32 binary string to a text file in a 4 line style"""
             with open(file, 'a') as append_file:
@@ -53,9 +59,11 @@ class Assembly:
                     start = end
                     end += 8
 
+
         with open(file, 'r') as file_:
+            new_file('binary.txt')
             for line in file_:
-                instruction = line.split()
+                instruction = line.lower().split()
                 binary = ''
                 # Add instructions here
                 if instruction[0] == 'addi':
@@ -73,18 +81,12 @@ class Assembly:
                     '00000' + '100000'
                     append_binary('binary.txt')
 
-                if instruction[0] == 'div':
-                    binary += self.opt['div'] +\
+                if instruction[0] == 'rem':
+                    binary += self.opt['rem'] +\
+                    format(int(instruction[3]), '05b') +\
                     format(int(instruction[1]), '05b') +\
                     format(int(instruction[2]), '05b') +\
-                    '00000' + '00000' + '011010'
-                    append_binary('binary.txt')
-
-                if instruction[0] == 'mfhi':
-                    binary += self.opt['mfhi'] +\
-                    '00000' + '00000' +\
-                    format(int(instruction[1]), '05b') +\
-                    '00000' + '010000'
+                    '00011' + '011010'
                     append_binary('binary.txt')
 
                 if instruction[0] == 'beq':
@@ -106,6 +108,15 @@ class Assembly:
                     binary += self.opt['j'] +\
                     format(int(instruction[1]), '026b')
                     append_binary('binary.txt')
+
+                if instruction[0] == 'mul':
+                    binary += self.opt['mul'] +\
+                    format(int(instruction[2]), '05b') +\
+                    format(int(instruction[3]), '05b') +\
+                    format(int(instruction[1]), '05b') +\
+                    '00000' + '000010'
+                    append_binary('binary.txt')
+
 
 if __name__ == '__main__':
     target = Assembly()

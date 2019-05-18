@@ -5,8 +5,7 @@ sub 3 3 3
 addi 2 25 0
 add 3 0 25
 addi 2 2 1
-div 3 2
-mfhi 4
+rem 4 3 2
 beq 0 1 96
 beq 2 3 92
 beq 4 25 64
@@ -21,3 +20,4 @@ add 6 2 25
 j 56
 sub 5 5 5
 j 56
+mul 10 1 2

@@ -6,8 +6,7 @@ sub $3, $3, $3; aseguramos que sea cero
 addi $2, $25, #0; possible_divisor
 add $3, $0, $25; numero
 addi $2, $2, #1; añadimos un 1 al possible_divisor
-div $3, $2;
-mfhi $4; se guarda el modulo en la posicion 4
+rem $4, $3, $2; se guarda el residuo en el registro 4
 beq $0, $1, #96; cuando el contador sea 8200
 beq $2, $3, #92; si el possible_divisor y el numero son iguales, sale del ciclo
 beq $4, $25, #64; cuando sea divisor
@@ -24,3 +23,4 @@ j #56; se busca por mas numeros perfectos
 
 sub $5, $5, $5; borra el posible numero perfecto
 j $56; se incrementa 1 al numero del primer ciclo
+mul $10, $1, $2;
