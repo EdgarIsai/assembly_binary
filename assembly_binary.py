@@ -1,30 +1,30 @@
 import re
 
+
 class Assembly:
 
     def __init__(self):
         self.opt = {
-        'add':'000000',
-        'addi':'001000',
-        'div':'000000',
-        'mfhi':'000000',
-        'beq':'000100',
-        'sub':'000000',
-        'j':'000010',
+            'add': '000000',
+            'addi': '001000',
+            'div': '000000',
+            'mfhi': '000000',
+            'beq': '000100',
+            'sub': '000000',
+            'j': '000010',
         }
 
     def clean(self, file):
         """
         Creates a text file with all the instructions and then erase the
-        unnesesary characters (',', '$' and '#')
+        unnecessary characters (',', '$' and '#')
         """
-        self.file = file
         pattern = r'[\w]+\s[$#][\d]+,?\s?[#$]?[\d]{0,},?\s?[$#]?[\d]{0,}'
         # fetch all the instructions
         with open(file, 'r') as original:
-            for line in original:
-                filedata = original.read()
-                instructions = re.findall(pattern, filedata)
+            for _ in original:
+                file_data = original.read()
+                instructions = re.findall(pattern, file_data)
         # Create a new file to store the instructions
         with open('copy.txt', 'w') as copy:
             for instruction in instructions:
@@ -32,7 +32,7 @@ class Assembly:
         # Erase unwanted symbols from instructions
         with open('copy.txt', 'r') as file:
             data = file.read()
-            for line in data:
+            for _ in data:
                 data = data.replace(',', '')
                 data = data.replace('#', '')
                 data = data.replace('$', '')
@@ -53,7 +53,6 @@ class Assembly:
                     start = end
                     end += 8
 
-
         with open(file, 'r') as file_:
             for line in file_:
                 instruction = line.split()
@@ -61,9 +60,9 @@ class Assembly:
                 # Add instructions here
                 if instruction[0] == 'addi':
                     binary += self.opt['addi'] +\
-                    format(int(instruction[2]), '05b') +\
-                    format(int(instruction[1]), '05b') +\
-                    format(int(instruction[3]), '016b')
+                        format(int(instruction[2]), '05b') +\
+                        format(int(instruction[1]), '05b') +\
+                        format(int(instruction[3]), '016b')
                     append_binary('binary.txt')
 
                 if instruction[0] == 'add':
