@@ -13,6 +13,8 @@ class Assembly:
             'sub': '000000',
             'j': '000010',
             'mul': '011100',
+            'sw': '101011',
+            'lw': '100011',
         }
 
     def clean(self, file):
@@ -20,7 +22,9 @@ class Assembly:
         Creates a text file with all the instructions and then erase the
         unnecessary characters (',', '$' and '#')
         """
-        pattern = r'[\w]+\s[$#][\d]+,?\s?[#$]?[\d]{0,},?\s?[$#]?[\d]{0,}'
+        pattern = re.compile(r'''[\w]+\s[$#][\d]+,?\s?
+                            [\w]{0,}\(?[#$]?[\d]{0,},?\s?
+                            [$#]?[\d]{0,}''', re.X)
         # fetch all the instructions
         with open(file, 'r') as original:
             for _ in original:
@@ -37,6 +41,7 @@ class Assembly:
                 data = data.replace(',', '')
                 data = data.replace('#', '')
                 data = data.replace('$', '')
+                data = data.replace('(', ' ')
 
         with open('copy.txt', 'w') as file:
             file.write(data)
@@ -115,6 +120,20 @@ class Assembly:
                             + format(int(instruction[3]), '05b') \
                             + format(int(instruction[1]), '05b') \
                             + '00000' + '000010'
+                    append_binary('binary.txt')
+
+                if instruction[0] == 'sw':
+                    binary += self.opt['sw'] \
+                            + format(int(instruction[3]), '05b') \
+                            + format(int(instruction[1]), '05b') \
+                            + format(int(instruction[2]), '016b')
+                    append_binary('binary.txt')
+
+                if instruction[0] == 'lw':
+                    binary += self.opt['lw'] \
+                            + format(int(instruction[3]), '05b') \
+                            + format(int(instruction[1]), '05b') \
+                            + format(int(instruction[2]), '016b')
                     append_binary('binary.txt')
 
 

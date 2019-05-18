@@ -24,3 +24,6 @@ j #56; se busca por mas numeros perfectos
 sub $5, $5, $5; borra el posible numero perfecto
 j $56; se incrementa 1 al numero del primer ciclo
 mul $10, $1, $2;
+;instrucciones extra
+sw $15, 15($0)
+lw $15, 15($0)
