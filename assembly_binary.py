@@ -58,11 +58,54 @@ class Assembly:
             for line in file_:
                 instruction = line.split()
                 binary = ''
+                # Add instructions here
                 if instruction[0] == 'addi':
                     binary += self.opt['addi'] +\
                     format(int(instruction[2]), '05b') +\
                     format(int(instruction[1]), '05b') +\
                     format(int(instruction[3]), '016b')
+                    append_binary('binary.txt')
+
+                if instruction[0] == 'add':
+                    binary += self.opt['add'] +\
+                    format(int(instruction[2]), '05b') +\
+                    format(int(instruction[3]), '05b') +\
+                    format(int(instruction[1]), '05b') +\
+                    '00000' + '100000'
+                    append_binary('binary.txt')
+
+                if instruction[0] == 'div':
+                    binary += self.opt['div'] +\
+                    format(int(instruction[1]), '05b') +\
+                    format(int(instruction[2]), '05b') +\
+                    '00000' + '00000' + '011010'
+                    append_binary('binary.txt')
+
+                if instruction[0] == 'mfhi':
+                    binary += self.opt['mfhi'] +\
+                    '00000' + '00000' +\
+                    format(int(instruction[1]), '05b') +\
+                    '00000' + '010000'
+                    append_binary('binary.txt')
+
+                if instruction[0] == 'beq':
+                    binary += self.opt['beq'] +\
+                    format(int(instruction[1]), '05b') +\
+                    format(int(instruction[2]), '05b') +\
+                    format(int(instruction[3]), '016b')
+                    append_binary('binary.txt')
+
+                if instruction[0] == 'sub':
+                    binary += self.opt['sub'] +\
+                    format(int(instruction[2]), '05b') +\
+                    format(int(instruction[3]), '05b') +\
+                    format(int(instruction[1]), '016b') +\
+                    '00000' + '100010'
+                    append_binary('binary.txt')
+
+                if instruction[0] == 'j':
+                    binary += self.opt['j'] +\
+                    format(int(instruction[1]), '026b')
                     append_binary('binary.txt')
 
 if __name__ == '__main__':

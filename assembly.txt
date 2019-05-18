@@ -5,14 +5,14 @@ sub $2, $2, $2; aseguramos que sea cero
 sub $3, $3, $3; aseguramos que sea cero
 addi $2, $25, #0; possible_divisor
 add $3, $0, $25; numero
-addi $2, $25, #1; añadimos un 1 al possible_divisor
+addi $2, $2, #1; añadimos un 1 al possible_divisor
 div $3, $2;
 mfhi $4; se guarda el modulo en la posicion 4
 beq $0, $1, #96; cuando el contador sea 8200
 beq $2, $3, #92; si el possible_divisor y el numero son iguales, sale del ciclo
 beq $4, $25, #64; cuando sea divisor
 j #24; regresa donde se suma 1 al possible_divisor
-addi $0, $25, #1; añadimos 1 al contador
+addi $0, $0, #1; añadimos 1 al contador
 j #8;
 
 add $5, $2, $25;
