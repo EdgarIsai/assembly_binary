@@ -1,29 +1,271 @@
-; Se buscan los numeros perfectos que existan entre el numero 3 y 8200
-addi $0, $25, #3;  25 siempre sera 0, este es un contador[0]
-addi $1, $25, #8200;  limite[4]
-sub $2, $2, $2; aseguramos que sea cero[8]
-sub $3, $3, $3; aseguramos que sea cero[12]
-addi $2, $25, #0; possible_divisor[16]
-add $3, $0, $25; numero[20]
-addi $2, $2, #1; añadimos un 1 al possible_divisor[24]
-rem $4, $3, $2; se guarda el residuo en el registro 4[28]
-beq $0, $1, #96; cuando el contador sea 8200[32]
-beq $2, $3, #92; si el possible_divisor y el numero son iguales, sale del ciclo[36]
-beq $4, $25, #64; cuando sea divisor[40]
-j #24; regresa donde se suma 1 al possible_divisor[44]
-addi $0, $0, #1; añadimos 1 al contador[48]
-j #8;[52]
+addi $1 $0 #1 ;0
+addi $2 $0 #2 ;4
+addi $3 $0 #3 ;8
+addi $4 $0 #4 ;12
+addi $5 $0 #65  ;16
+addi $6 $0 #66  ;20
+addi $7 $0 #67  ;24
+addi $8 $0 #68  ;28
+addi $9 $0 #69  ;32
+addi $10 $0 #70 ;36
+addi $11 $0 #71 ;40
+addi $12 $0 #72 ;44
+addi $13 $0 #73 ;48
+addi $14 $0 #74 ;52
+addi $15 $0 #75 ;56
+addi $16 $0 #76 ;60
+addi $17 $0 #77 ;64
+addi $18 $0 #78 ;68
+addi $19 $0 #79 ;72
+addi $20 $0 #80 ;76
+addi $21 $0 #81 ;80
+addi $22 $0 #82 ;84
+addi $23 $0 #83 ;88
+addi $24 $0 #84 ;92
+addi $25 $0 #85 ;96
+addi $26 $0 #86 ;100
+addi $27 $0 #87 ;104
+addi $28 $0 #88 ;108
+addi $29 $0 #89 ;112
+addi $30 $0 #90 ;116
+addi $31 $0 #64 ;120
 
-add $5, $2, $25;[56]
-beq $5, $3, #72; en caso de que sea numero perfecto[60]
-j #24; +1 al posible divisor
-sub $6, $6, $6; se guarda un 0 donde va el numero perfecto
-add $6, $2, $25; se agrega el numero perfecto
-j #56; se busca por mas numeros perfectos
+beq $5 $31 #444
+beq $6 $31 #456
+beq $7 $31 #468
+beq $8 $31 #480
+beq $9 $31 #492
+beq $10 $31 #504
+beq $11 $31 #516
+beq $12 $31 #528
+beq $13 $31 #540
+beq $14 $31 #552
+beq $15 $31 #564
+beq $16 $31 #576
+beq $17 $31 #588
+beq $18 $31 #600
+beq $19 $31 #612
+beq $20 $31 #624
+beq $21 $31 #636
+beq $22 $31 #648
+beq $23 $31 #660
+beq $24 $31 #672
+beq $25 $31 #684
+beq $26 $31 #696
+beq $27 $31 #708
+beq $28 $31 #720
+beq $29 $31 #732
+beq $30 $31 #744
 
-sub $5, $5, $5; borra el posible numero perfecto
-j $56; se incrementa 1 al numero del primer ciclo
-mul $10, $1, $2;
-;instrucciones extra
-sw $15, 0($20)
-lw $15, 15($0)
+addi $31 $31 #6
+addi $5 $5 #32
+addi $6 $6 #32
+addi $7 $7 #32
+addi $8 $8 #32
+addi $9 $9 #32
+addi $10 $10 #32
+addi $11 $11 #32
+addi $12 $12 #32
+addi $13 $13 #32
+addi $14 $14 #32
+addi $15 $15 #32
+addi $16 $16 #32
+addi $17 $17 #32
+addi $18 $18 #32
+addi $19 $19 #32
+addi $20 $20 #32
+addi $21 $21 #32
+addi $22 $22 #32
+addi $23 $23 #32
+addi $24 $24 #32
+addi $25 $25 #32
+addi $26 $26 #32
+addi $27 $27 #32
+addi $28 $28 #32
+addi $29 $29 #32
+addi $30 $30 #32
+
+addi $31 $31 #1
+beq $5 $31 #756
+beq $6 $31 #768
+beq $7 $31 #780
+beq $8 $31 #792
+beq $9 $31 #804
+beq $10 $31 #816
+beq $11 $31 #828
+beq $12 $31 #840
+beq $13 $31 #852
+beq $14 $31 #864
+beq $15 $31 #876
+beq $16 $31 #888
+beq $17 $31 #900
+beq $18 $31 #912
+beq $19 $31 #924
+beq $20 $31 #936
+beq $21 $31 #948
+beq $22 $31 #960
+beq $23 $31 #972
+beq $24 $31 #984
+beq $25 $31 #996
+beq $26 $31 #1008
+beq $27 $31 #1020
+beq $28 $31 #1032
+beq $29 $31 #1044
+beq $30 $31 #1056
+
+sw $5, 199(0)
+sw $1, 198(0)
+j $124
+sw $6, 197(0)
+sw $2, 196(0)
+j $124
+sw $7, 195(0)
+sw $2, 194(0)
+j $124
+sw $8, 193(0)
+sw $2, 192(0)
+j $124
+sw $9, 191(0)
+sw $1, 190(0)
+j $124
+sw $10, 189(0)
+sw $2, 188(0)
+j $124
+sw $11, 187(0)
+sw $2, 186(0)
+j $124
+sw $12 186(0)
+sw $2 185(0)
+j $124
+sw $13 184(0)
+sw $1 183(0)
+j $124
+sw $14 182(0)
+sw $2 181(0)
+j $124
+sw $15 180(0)
+sw $2 179(0)
+j $124
+sw $16 178(0)
+sw $2 177(0)
+j $124
+sw $17 176(0)
+sw $2 175(0)
+j $124
+sw $18 174(0)
+sw $2 173(0)
+j $124
+sw $19 172(0)
+sw $1 171(0)
+j $124
+sw $20 170(0)
+sw $2 169(0)
+j $124
+sw $21 168(0)
+sw $2 167(0)
+j $124
+sw $22 166(0)
+sw $2 165(0)
+j $124
+sw $23 164(0)
+sw $2 163(0)
+j $124
+sw $24 162(0)
+sw $2 161(0)
+j $124
+sw $25 160(0)
+sw $1 159(0)
+j $124
+sw $26 158(0)
+sw $2 157(0)
+j $124
+sw $27 156(0)
+sw $2 155(0)
+j $124
+sw $28 154(0)
+sw $2 153(0)
+j $124
+sw $29 152(0)
+sw $2 151(0)
+j $124
+sw $30 150(0)
+sw $2 149(0)
+j $124
+
+sw $5 148(0)
+sw $3 147(0)
+j $336
+sw $6 146(0)
+sw $4 145(0)
+j $336
+sw $7 144(0)
+sw $4 143(0)
+j $336
+sw $8 142(0)
+sw $4 141(0)
+j $336
+sw $9 140(0)
+sw $3 139(0)
+j $336
+sw $10 138(0)
+sw $4 137(0)
+j $336
+sw $11 136(0)
+sw $4 135(0)
+j $336
+sw $12 134(0)
+sw $4 133(0)
+j $336
+sw $13 132(0)
+sw $3 131(0)
+j $336
+sw $14 130(0)
+sw $4 129(0)
+j $336
+sw $15 128(0)
+sw $4 127(0)
+j $336
+sw $16 126(0)
+sw $4 125(0)
+j $336
+sw $17 124(0)
+sw $4 123(0)
+j $336
+sw $18 122(0)
+sw $4 121(0)
+j $336
+sw $19 120(0)
+sw $3 119(0)
+j $336
+sw $20 118(0)
+sw $4 117(0)
+j $336
+sw $21 116(0)
+sw $4 115(0)
+j $336
+sw $22 114(0)
+sw $4 113(0)
+j $336
+sw $23 112(0)
+sw $4 111(0)
+j $336
+sw $24 110(0)
+sw $4 109(0)
+j $336
+sw $25 108(0)
+sw $3 107(0)
+j $336
+sw $26 106(0)
+sw $4 105(0)
+j $336
+sw $27 104(0)
+sw $4 103(0)
+j $336
+sw $28 102(0)
+sw $4 101(0)
+j $336
+sw $29 100(0)
+sw $4 99(0)
+j $336
+sw $30 98(0)
+sw $4 97(0)

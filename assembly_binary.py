@@ -23,32 +23,32 @@ class Assembly:
         unnecessary characters (',', '$' and '#')
         """
         pattern = re.compile(r'''[\w]+\s[$#][\d]+,?\s?
-                            [\w]{0,}\(?[#$]?[\d]{0,},?\s?
+                            [\d]{0,}\(?[#$]?[\d]{0,},?\s?
                             [$#]?[\d]{0,}''', re.X)
         # fetch all the instructions
         with open(file, 'r') as original:
-            for _ in original:
-                file_data = original.read()
-                instructions = re.findall(pattern, file_data)
+            file_data = original.read()
+            instructions = re.findall(pattern, file_data)
         # Create a new file to store the instructions
         with open('copy.txt', 'w') as copy:
             for instruction in instructions:
+                instruction = instruction.rstrip()
                 copy.write(instruction+'\n')
         # Erase unwanted symbols from instructions
         with open('copy.txt', 'r') as file:
             data = file.read()
-            for _ in data:
-                data = data.replace(',', '')
-                data = data.replace('#', '')
-                data = data.replace('$', '')
-                data = data.replace('(', ' ')
+            data = data.replace(',', '')
+            data = data.replace('#', '')
+            data = data.replace('$', '')
+            data = data.replace('(', ' ')
 
-        with open('copy.txt', 'w') as file:
-            file.write(data)
+            with open('copy.txt', 'w') as file:
+                file.write(data)
 
     def binary(self, file):
         """
-        Translates assembly to binary and appends it to a new file"""
+        Translates assembly to binary and appends it to a new file
+        """
         def new_file(file):
             with open(file, 'w') as file:
                 file.write('')
@@ -69,10 +69,9 @@ class Assembly:
             new_file('binary.txt')
             for line in file_:
                 instruction = line.lower().split()
-                if instruction == False:
+                if len(instruction) == 0:
                     continue
                 binary = ''
-                print(instruction)
                 # Add instructions here
                 if instruction[0] == 'addi':
                     binary += self.opt['addi'] \
@@ -114,9 +113,8 @@ class Assembly:
 
                 if instruction[0] == 'j':
                     binary += self.opt['j'] \
-                            + format(int(instruction[1]), '016b')
+                            + format(int(instruction[1]), '026b')
                     append_binary('binary.txt')
-
 
 
                 if instruction[0] == 'sw':
