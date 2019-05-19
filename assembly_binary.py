@@ -69,7 +69,10 @@ class Assembly:
             new_file('binary.txt')
             for line in file_:
                 instruction = line.lower().split()
+                if instruction == False:
+                    continue
                 binary = ''
+                print(instruction)
                 # Add instructions here
                 if instruction[0] == 'addi':
                     binary += self.opt['addi'] \
@@ -111,16 +114,10 @@ class Assembly:
 
                 if instruction[0] == 'j':
                     binary += self.opt['j'] \
-                            + format(int(instruction[1]), '026b')
+                            + format(int(instruction[1]), '016b')
                     append_binary('binary.txt')
 
-                if instruction[0] == 'mul':
-                    binary += self.opt['mul'] \
-                            + format(int(instruction[2]), '05b') \
-                            + format(int(instruction[3]), '05b') \
-                            + format(int(instruction[1]), '05b') \
-                            + '00000' + '000010'
-                    append_binary('binary.txt')
+
 
                 if instruction[0] == 'sw':
                     binary += self.opt['sw'] \

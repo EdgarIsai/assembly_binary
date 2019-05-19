@@ -1,21 +1,21 @@
 ; Se buscan los numeros perfectos que existan entre el numero 3 y 8200
-addi $0, $25, #3;  25 siempre sera 0, este es un contador
-addi $1, $25, #8200;  limite
-sub $2, $2, $2; aseguramos que sea cero
-sub $3, $3, $3; aseguramos que sea cero
-addi $2, $25, #0; possible_divisor
-add $3, $0, $25; numero
-addi $2, $2, #1; añadimos un 1 al possible_divisor
-rem $4, $3, $2; se guarda el residuo en el registro 4
-beq $0, $1, #96; cuando el contador sea 8200
-beq $2, $3, #92; si el possible_divisor y el numero son iguales, sale del ciclo
-beq $4, $25, #64; cuando sea divisor
-j #24; regresa donde se suma 1 al possible_divisor
-addi $0, $0, #1; añadimos 1 al contador
-j #8;
+addi $0, $25, #3;  25 siempre sera 0, este es un contador[0]
+addi $1, $25, #8200;  limite[4]
+sub $2, $2, $2; aseguramos que sea cero[8]
+sub $3, $3, $3; aseguramos que sea cero[12]
+addi $2, $25, #0; possible_divisor[16]
+add $3, $0, $25; numero[20]
+addi $2, $2, #1; añadimos un 1 al possible_divisor[24]
+rem $4, $3, $2; se guarda el residuo en el registro 4[28]
+beq $0, $1, #96; cuando el contador sea 8200[32]
+beq $2, $3, #92; si el possible_divisor y el numero son iguales, sale del ciclo[36]
+beq $4, $25, #64; cuando sea divisor[40]
+j #24; regresa donde se suma 1 al possible_divisor[44]
+addi $0, $0, #1; añadimos 1 al contador[48]
+j #8;[52]
 
-add $5, $2, $25;
-beq $5, $3, #72; en caso de que sea numero perfecto
+add $5, $2, $25;[56]
+beq $5, $3, #72; en caso de que sea numero perfecto[60]
 j #24; +1 al posible divisor
 sub $6, $6, $6; se guarda un 0 donde va el numero perfecto
 add $6, $2, $25; se agrega el numero perfecto
@@ -25,5 +25,5 @@ sub $5, $5, $5; borra el posible numero perfecto
 j $56; se incrementa 1 al numero del primer ciclo
 mul $10, $1, $2;
 ;instrucciones extra
-sw $15, 15($0)
+sw $15, 0($20)
 lw $15, 15($0)
