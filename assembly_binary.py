@@ -70,7 +70,7 @@ class Assembly:
                 if len(instruction) == 0:
                     continue
                 binary = ''
-                
+
                 if instruction[0] not in self.opt.keys():
                     print(f'{instruction[0]} is not a supported instruction')
                     exit()
@@ -92,10 +92,10 @@ class Assembly:
 
                 if instruction[0] == 'rem':
                     binary += self.opt['rem'] \
+                            + format(int(instruction[2]), '05b') \
                             + format(int(instruction[3]), '05b') \
                             + format(int(instruction[1]), '05b') \
-                            + format(int(instruction[2]), '05b') \
-                            + '00011' + '011010'
+                            + '00000' + '011010'
                     append_binary('binary.txt')
 
                 if instruction[0] == 'beq':
