@@ -70,7 +70,6 @@ class Assembly:
                 if len(instruction) == 0:
                     continue
                 binary = ''
-                print(instruction)
                 # Add instructions here
                 if instruction[0] == 'addi':
                     binary += self.opt['addi'] \
@@ -128,6 +127,10 @@ class Assembly:
                             + format(int(instruction[1]), '05b') \
                             + format(int(instruction[2]), '016b')
                     append_binary('binary.txt')
+
+                if instruction[0] not in self.opt.keys():
+                    print(f'{instruction[0]} is not a supported instruction')
+                    exit()
 
 
 if __name__ == '__main__':
