@@ -53,7 +53,6 @@ class Assembly:
             with open(file, 'w') as file:
                 file.write('')
 
-
         def append_binary(file):
             """Append a 32 binary string to a text file in a 4 line style"""
             with open(file, 'a') as append_file:
@@ -64,7 +63,6 @@ class Assembly:
                     start = end
                     end += 8
 
-
         with open(file, 'r') as file_:
             new_file('binary.txt')
             for line in file_:
@@ -72,6 +70,7 @@ class Assembly:
                 if len(instruction) == 0:
                     continue
                 binary = ''
+                print(instruction)
                 # Add instructions here
                 if instruction[0] == 'addi':
                     binary += self.opt['addi'] \
@@ -115,7 +114,6 @@ class Assembly:
                     binary += self.opt['j'] \
                             + format(int(instruction[1]), '026b')
                     append_binary('binary.txt')
-
 
                 if instruction[0] == 'sw':
                     binary += self.opt['sw'] \
