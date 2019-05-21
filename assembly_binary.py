@@ -15,6 +15,7 @@ class Assembly:
             'mul': '011100',
             'sw': '101011',
             'lw': '100011',
+            'slt': '000000',
         }
 
     def clean(self, file):
@@ -130,6 +131,14 @@ class Assembly:
                             + format(int(instruction[3]), '05b') \
                             + format(int(instruction[1]), '05b') \
                             + format(int(instruction[2]), '016b')
+                    append_binary('binary.txt')
+
+                if instruction[0] == 'slt':
+                    binary += self.opt['slt'] \
+                            + format(int(instruction[2]), '05b') \
+                            + format(int(instruction[3]), '05b') \
+                            + format(int(instruction[1]), '05b') \
+                            + '00000' + '101010'
                     append_binary('binary.txt')
 
 

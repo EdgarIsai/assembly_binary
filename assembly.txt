@@ -25,3 +25,4 @@ addi $5, $0, #0;[56]
 ;instrucciones extra
 sw $15, 0($20)
 lw $15, 15($0)
+slt $30, $2, $3
