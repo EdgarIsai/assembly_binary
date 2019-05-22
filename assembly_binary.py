@@ -141,6 +141,14 @@ class Assembly:
                             + '00000' + '101010'
                     append_binary('binary.txt')
 
+                if instruction[0] == 'mul':
+                    binary += self.opt['mul'] \
+                            + format(int(instruction[2]), '05b') \
+                            + format(int(instruction[3]), '05b') \
+                            + format(int(instruction[1]), '05b') \
+                            + '00000' + '000010'
+                    append_binary('binary.txt')
+
 
 if __name__ == '__main__':
     target = Assembly()
